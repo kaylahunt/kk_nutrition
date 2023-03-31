@@ -1,15 +1,11 @@
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:kaylaknows_nutrition/services/locator.dart';
 import 'navigation/navigate.dart';
-import 'constants.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart' as dot_env;
+import 'firebase_options.dart';
 
-Future main() async {
-  //dot_env.dotenv;
-  //WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
-  //setupServices();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
   runApp(const MyApp());
 }
 

@@ -46,6 +46,6 @@ class Food {
       'carbs': _carbs,
       'fats': _fats,
       'servings': _servings
-    }
+    };
   }
 }

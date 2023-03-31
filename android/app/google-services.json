@@ -41,42 +41,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:980261491778:android:33244d05b3c9fb070c49db",
-        "android_client_info": {
-          "package_name": "com.example.mental_health"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "980261491778-ttnnaai4n4aju6lnmbup3q0urp398s3q.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCp6SNlYneOB6a9qnjZmhvS7x8HplUEG6M"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "980261491778-ttnnaai4n4aju6lnmbup3q0urp398s3q.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "980261491778-bhv74hru0v36tis8l57vr3eepula75t8.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.mentalHealth"
-              }
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"

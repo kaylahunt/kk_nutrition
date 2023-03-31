@@ -7,7 +7,7 @@ class User {
   String _username;
   String _emailAddress;
   String _password;
-  //Set dates_entered = {};
+  late DatabaseReference _id;
 
   User(
       {@required fullname,
@@ -23,6 +23,7 @@ class User {
   String get emailAddress => _emailAddress;
   String get password => _password;
   String get fullName => _fullName;
+  DatabaseReference get id => _id;
 
   set username(String un) {
     _username = un;
@@ -40,9 +41,11 @@ class User {
     _fullName = name;
   }
 
+  set id(DatabaseReference id) {
+    _id = id;
+  }
+
   Map<String, dynamic> toJson() {
-    DateTime now = DateTime.now();
-    DateTime date = DateTime(now.year, now.month, now.day);
     return {
       _username: {
         'user_info': {
@@ -50,7 +53,7 @@ class User {
           'email': _emailAddress,
           'password': _password
         },
-        date.toString(): {},
+        'Friday': 'breakfast',
       }
     };
   }

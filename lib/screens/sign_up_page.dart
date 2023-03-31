@@ -218,7 +218,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                         onChanged: (value) {
                                           setState(() {
                                             email = value.trim();
-                                            user.emailAddress = email;
                                           });
                                         },
                                       ),
@@ -299,9 +298,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             password = passwordController.text;
                             username = usernameController.text;
                             fullname = fullnameController.text;
-                            user.username = username;
-                            user.fullName = fullname;
-                            user.password = password;
+                            user = User(
+                                fullname: fullname,
+                                username: username,
+                                emailAddress: email,
+                                password: password);
+                            user.id = saveUser(user);
                             // setState(() {
                             //   if (username.isNotEmpty) {
                             //     // _validateUsername = false;
