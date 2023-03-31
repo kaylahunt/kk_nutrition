@@ -9,15 +9,15 @@ class Food {
   final int _fats;
   final int _servings;
 
-  Food(
-      {@required name,
-      @required brand,
-      @required calories,
-      @required protein,
-      @required carbs,
-      @required fats,
-      @required servings})
-      : this._name = name,
+  Food({
+    @required name,
+    @required brand,
+    @required calories,
+    @required protein,
+    @required carbs,
+    @required fats,
+    @required servings,
+  })  : this._name = name,
         this._brand = brand,
         this._calories = calories,
         this._protein = protein,
@@ -38,4 +38,14 @@ class Food {
   int get fats => _fats;
 
   int get servings => _servings;
+
+  Map<String, int> foodToJson() {
+    return {
+      'calories': _calories,
+      'proteins': _protein,
+      'carbs': _carbs,
+      'fats': _fats,
+      'servings': _servings
+    }
+  }
 }

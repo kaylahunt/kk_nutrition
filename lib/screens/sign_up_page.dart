@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:kaylaknows_nutrition/screens/home.dart';
 import 'package:kaylaknows_nutrition/screens/sign_in_page.dart';
 import 'package:kaylaknows_nutrition/services/database.dart';
+import 'package:kaylaknows_nutrition/user.dart';
 
-//late User user;
+late User user;
 double consumed = 0;
 double target = 2000;
 String waterFeatureUsedDate = "";
@@ -217,6 +218,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         onChanged: (value) {
                                           setState(() {
                                             email = value.trim();
+                                            user.emailAddress = email;
                                           });
                                         },
                                       ),
@@ -297,6 +299,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             password = passwordController.text;
                             username = usernameController.text;
                             fullname = fullnameController.text;
+                            user.username = username;
+                            user.fullName = fullname;
+                            user.password = password;
                             // setState(() {
                             //   if (username.isNotEmpty) {
                             //     // _validateUsername = false;
