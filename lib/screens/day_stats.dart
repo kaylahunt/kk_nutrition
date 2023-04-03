@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:hexcolor/hexcolor.dart';
-// import 'package:kk_nutrition/screens/sign_in_page.dart';
+// import 'package:kaylaknows_nutrition/screens/sign_in_page.dart';
 
 import '../app_theme.dart';
 // Need the auth stuff
@@ -11,9 +11,10 @@ double alldatacalories = 0;
 double alldatacarbo = 0;
 double alldataprotein = 0;
 double alldatafat = 0;
-double carbspercent = 0;
-double proteinpercent = 0;
-double fatpercent = 0;
+double calspercent = .16;
+double carbspercent = .50;
+double proteinpercent = .25;
+double fatpercent = .77;
 //late User user1;
 //late String eatenCalorie;
 
@@ -32,23 +33,91 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     //user1 = auth.currentUser!;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Search results"),
-        backgroundColor: Colors.cyan,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: const Text("Search results"),
+    //     backgroundColor: Colors.cyan,
+    //     leading: IconButton(
+    //       onPressed: () {
+    //         Navigator.of(context).pop();
+    //       },
+    //       icon: const Icon(
+    //         Icons.arrow_back,
+    //         color: Colors.white,
+    //       ),
+    //     ),
+    //   ),
+    var screenWidth = MediaQuery.of(context).size.width;
+    var bound = (screenWidth / 6);
+
+    return Stack(children: <Widget>[
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Calories',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: AppTheme.fontName,
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                letterSpacing: -0.2,
+                color: AppTheme.darkText,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Container(
+                height: 4,
+                width: bound * 2,
+                decoration: BoxDecoration(
+                  color: HexColor('#87A0E5').withOpacity(0.2),
+                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      width: (calspercent * bound) > bound
+                          ? bound * 2
+                          : (calspercent * bound) < 0
+                              ? 0
+                              : calspercent * bound * 2,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          HexColor('#87A0E5'),
+                          HexColor('#87A0E5').withOpacity(0.5),
+                        ]),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(4.0)),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                (alldatacarbo).toStringAsFixed(0) + 'g',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: AppTheme.fontName,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: AppTheme.grey.withOpacity(0.5),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      body: Container(
+      Container(
           child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 40, bottom: 16),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -71,7 +140,7 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
                     padding: const EdgeInsets.only(top: 4),
                     child: Container(
                       height: 4,
-                      width: 70,
+                      width: bound,
                       decoration: BoxDecoration(
                         color: HexColor('#87A0E5').withOpacity(0.2),
                         borderRadius:
@@ -80,11 +149,11 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            width: (carbspercent * widget.animation!.value) > 70
-                                ? 70
-                                : (carbspercent * widget.animation!.value) < 0
+                            width: (carbspercent * bound) > bound
+                                ? bound
+                                : (carbspercent * bound) < 0
                                     ? 0
-                                    : carbspercent * widget.animation!.value,
+                                    : carbspercent * bound,
                             height: 4,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
@@ -139,7 +208,7 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
                         padding: const EdgeInsets.only(top: 4),
                         child: Container(
                           height: 4,
-                          width: 70,
+                          width: bound,
                           decoration: BoxDecoration(
                             color: HexColor('#F56E98').withOpacity(0.2),
                             borderRadius:
@@ -148,17 +217,11 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
                           child: Row(
                             children: <Widget>[
                               Container(
-                                width: (proteinpercent *
-                                            widget.animationController!.value) >
-                                        70
-                                    ? 70
-                                    : (proteinpercent *
-                                                widget.animationController!
-                                                    .value) <
-                                            0
+                                width: (proteinpercent * bound) > bound
+                                    ? bound
+                                    : (proteinpercent * bound) < 0
                                         ? 0
-                                        : proteinpercent *
-                                            widget.animationController!.value,
+                                        : proteinpercent * bound,
                                 height: 4,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(colors: [
@@ -214,7 +277,7 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
                         padding: const EdgeInsets.only(right: 0, top: 4),
                         child: Container(
                           height: 4,
-                          width: 70,
+                          width: bound,
                           decoration: BoxDecoration(
                             color: HexColor('#F1B440').withOpacity(0.2),
                             borderRadius:
@@ -223,17 +286,11 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
                           child: Row(
                             children: <Widget>[
                               Container(
-                                width: (fatpercent *
-                                            widget.animationController!.value) >
-                                        70
-                                    ? 70
-                                    : (fatpercent *
-                                                widget.animationController!
-                                                    .value) <
-                                            0
+                                width: (fatpercent * bound) > bound
+                                    ? bound
+                                    : (fatpercent * bound) < 0
                                         ? 0
-                                        : fatpercent *
-                                            widget.animationController!.value,
+                                        : fatpercent * bound,
                                 height: 4,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(colors: [
@@ -268,8 +325,8 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
             )
           ],
         ),
-      )),
-    );
+      ))
+    ]);
   }
 }
 

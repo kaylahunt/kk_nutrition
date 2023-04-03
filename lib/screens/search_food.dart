@@ -39,26 +39,31 @@ class _SearchBarState extends State<SearchBar> {
         ),
         body: Stack(
           children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              height: 52,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Constants.primary,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: TextField(
-                decoration: const InputDecoration.collapsed(
-                  hintText: 'Search for food',
+            Align(
+              alignment: Alignment.center,
+              heightFactor: 25,
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: Constants.primary,
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                onChanged: (value) {
-                  searchText = value;
-                },
+                padding: const EdgeInsets.all(16),
+                child: TextField(
+                  decoration: const InputDecoration.collapsed(
+                    hintText: 'Search for food',
+                  ),
+                  onChanged: (value) {
+                    searchText = value;
+                  },
+                ),
               ),
             ),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.bottomCenter,
               child: MaterialButton(
+                child: const Text("Enter"),
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).push(
                       MaterialPageRoute(

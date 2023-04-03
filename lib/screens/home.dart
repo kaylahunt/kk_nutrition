@@ -20,6 +20,11 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var buttonBound = (screenWidth / 5);
+    var screenHeight = MediaQuery.of(context).size.height;
+    var headerBound = (screenHeight / 40);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Home Screen"),
@@ -29,19 +34,26 @@ class _HomePage extends State<HomePage> {
           child: Column(children: [
             const SizedBox(
               height: 50,
-              child: Text("Today's nutrition"),
+              child: Text(
+                "Today's nutrition",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-            //const DayStats(),
+            const DayStats(),
             const SizedBox(
               height: 20,
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Breakfast"),
+            SizedBox(
+              height: headerBound,
+              child: Text(
+                "Breakfast",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: headerBound),
+              ),
             ),
             MealLog(meal: "Breakfast"),
             SizedBox(
-              height: 25,
+              height: headerBound,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).push(
@@ -50,22 +62,28 @@ class _HomePage extends State<HomePage> {
                               const SearchBar(meal: "Breakfast")));
                 },
                 color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
+                padding: EdgeInsets.symmetric(
+                  horizontal: buttonBound,
+                  vertical: headerBound,
                 ),
-                child: const Text(
+                child: Text(
                   "Add Food",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: headerBound),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Lunch"),
+            SizedBox(
+              height: headerBound,
+              child: Text(
+                "Lunch",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: headerBound),
+              ),
             ),
             MealLog(meal: "Lunch"),
             SizedBox(
-              height: 25,
+              height: headerBound,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).push(
@@ -74,22 +92,28 @@ class _HomePage extends State<HomePage> {
                               const SearchBar(meal: "Lunch")));
                 },
                 color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
+                padding: EdgeInsets.symmetric(
+                  horizontal: buttonBound,
+                  vertical: headerBound,
                 ),
-                child: const Text(
+                child: Text(
                   "Add Food",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: headerBound),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Dinner"),
+            SizedBox(
+              height: headerBound,
+              child: Text(
+                "Dinner",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: headerBound),
+              ),
             ),
             MealLog(meal: "Dinner"),
             SizedBox(
-              height: 25,
+              height: headerBound,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).push(
@@ -98,22 +122,28 @@ class _HomePage extends State<HomePage> {
                               const SearchBar(meal: "Dinner")));
                 },
                 color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
+                padding: EdgeInsets.symmetric(
+                  horizontal: buttonBound,
+                  vertical: headerBound,
                 ),
-                child: const Text(
+                child: Text(
                   "Add Food",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: headerBound),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Snack"),
+            SizedBox(
+              height: headerBound,
+              child: Text(
+                "Snack",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: headerBound),
+              ),
             ),
             MealLog(meal: "Snack"),
             SizedBox(
-              height: 25,
+              height: headerBound,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).push(
@@ -122,12 +152,14 @@ class _HomePage extends State<HomePage> {
                               const SearchBar(meal: "Snack")));
                 },
                 color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
+                padding: EdgeInsets.symmetric(
+                  horizontal: buttonBound,
+                  vertical: headerBound,
                 ),
-                child: const Text(
+                child: Text(
                   "Add Food",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: headerBound),
                 ),
               ),
             ),
