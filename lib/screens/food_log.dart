@@ -4,13 +4,13 @@ import 'dart:typed_data';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'package:kaylaknows_nutrition/screens/sign_up_page.dart';
-import 'package:kaylaknows_nutrition/services/database.dart';
-import 'package:kaylaknows_nutrition/food_tracking/food.dart';
+import 'package:kk_nutrition/screens/sign_up_page.dart';
+import 'package:kk_nutrition/services/database.dart';
+import 'package:kk_nutrition/food_tracking/food.dart';
 import 'package:flutter/material.dart';
-import 'package:kaylaknows_nutrition/screens/home.dart';
+import 'package:kk_nutrition/screens/home.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:kaylaknows_nutrition/constants.dart';
+import 'package:kk_nutrition/constants.dart';
 
 // TODO: This is the page where you see the break down of the food, choose servings amount and then add it to the log
 class FoodLog extends StatefulWidget {

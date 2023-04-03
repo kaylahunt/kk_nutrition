@@ -1,8 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:kaylaknows_nutrition/food_tracking/meal.dart';
-import 'package:kaylaknows_nutrition/food_tracking/food.dart';
-import 'package:kaylaknows_nutrition/user.dart';
+import 'package:kk_nutrition/food_tracking/meal.dart';
+import 'package:kk_nutrition/food_tracking/food.dart';
+import 'package:kk_nutrition/user.dart';
 
 final databaseReference = FirebaseDatabase.instance.ref();
 

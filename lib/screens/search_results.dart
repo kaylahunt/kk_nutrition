@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:kaylaknows_nutrition/food_tracking/food.dart';
+import 'package:kk_nutrition/food_tracking/food.dart';
 import '../../constants.dart';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 import '../food_tracking/food_tile.dart';
 
@@ -10,9 +13,9 @@ late Response response;
 var dio = Dio();
 
 class SearchResult extends StatefulWidget {
-  final String searchText;
+  String searchText;
   final String meal;
-  const SearchResult({Key? key, required this.searchText, required this.meal})
+  SearchResult({Key? key, required this.searchText, required this.meal})
       : super(key: key);
 
   @override
@@ -36,15 +39,17 @@ class _SearchResultState extends State<SearchResult> {
     searchText = widget.searchText;
     meal = widget.meal;
     var response = httprequest(searchText);
-    results = await response;
-    for (var item in results) {
-      tiles.add(FoodTile(item, meal));
-    }
+    print("Here");
+    // results = response as List;
+    print("There");
+    // for (var item in results) {
+    //   tiles.add(FoodTile(item, meal));
+    // }
   }
 
-  dynamic dataList;
   @override
   Widget build(BuildContext context) {
+    print("H?EEELLLOOO");
     return Scaffold(
         appBar: AppBar(
           title: const Text("Search results"),
@@ -129,12 +134,11 @@ class _SearchResultState extends State<SearchResult> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return Column(
+                  Column(
                     children: tiles,
                   );
                 },
               ),
-              const SizedBox(height: 80),
             ],
           ),
         ));
@@ -143,13 +147,53 @@ class _SearchResultState extends State<SearchResult> {
   void research(String text) {
     results = [];
     setState(() {
-      searchText = text;
-      meal = meal;
+      widget.searchText = text;
+      getsmthg();
     });
   }
 }
 
+// Future<List> httprequest(String name) async {
+//   Map<String, String> headers = {
+//     'x-app-id': "6fdef0e0",
+//     'x-app-key': "e0d0ffe1141be81087401c46402ff78b",
+//   };
+//   var url = 'https://trackapi.nutritionix.com/v2/natural/nutrients?query=$name';
+//   final uri = Uri.parse(url);
+//   List results = [];
+//   try {
+//     final response = await http.post(uri, headers: headers);
+//     print(response);
+//     var responseData = json.decode(response.body);
+//     print(responseData);
+//     for (var i in responseData) {
+//       print(i);
+//     }
+//     // if (response.statusCode == 200) {
+//     //   for (var food in response.data['foods']) {
+//     //     Food entry = Food(
+//     //         name: food['food_name'].toString(),
+//     //         brand: food['brand_name'].toString(),
+//     //         calories: food['nf_calories'],
+//     //         protein: food['nf_protein'],
+//     //         carbs: food['nf_carbohydrate'],
+//     //         fats: food['nf_total_fat'],
+//     //         servings: 1);
+//     //     results.add(entry);
+//     //   }
+//     // }
+//     return results;
+//   } catch (e) {
+//     print(e);
+//     Fluttertoast.showToast(
+//         msg: 'Food not found. Try again', gravity: ToastGravity.TOP);
+//     return results;
+//   }
+// }
+
 Future<List> httprequest(String name) async {
+  dio.options.headers['content'] = "application/json";
+  dio.options.headers['Content-Type'] = "application/x-www-form-urlencoded";
   dio.options.headers['x-app-id'] = "6fdef0e0";
   dio.options.headers["x-app-key"] = "e0d0ffe1141be81087401c46402ff78b";
   List results = [];
@@ -157,21 +201,24 @@ Future<List> httprequest(String name) async {
     response = await dio.post(
         'https://trackapi.nutritionix.com/v2/natural/nutrients',
         data: {'query': name});
+    print(response);
     if (response.statusCode == 200) {
-      for (var food in response.data['foods']) {
-        Food entry = Food(
-            name: food['food_name'].toString(),
-            brand: food['brand_name'].toString(),
-            calories: food['nf_calories'],
-            protein: food['nf_protein'],
-            carbs: food['nf_carbohydrate'],
-            fats: food['nf_total_fat'],
-            servings: 1);
-        results.add(entry);
-      }
+      print(response.data);
+      // for (var food in response.data['foods']) {
+      //   Food entry = Food(
+      //       name: food['food_name'].toString(),
+      //       brand: food['brand_name'].toString(),
+      //       calories: food['nf_calories'],
+      //       protein: food['nf_protein'],
+      //       carbs: food['nf_carbohydrate'],
+      //       fats: food['nf_total_fat'],
+      //       servings: 1);
+      //   results.add(entry);
+      // }
     }
     return results;
   } catch (e) {
+    print(e);
     Fluttertoast.showToast(
         msg: 'Food not found. Try again', gravity: ToastGravity.TOP);
     return results;

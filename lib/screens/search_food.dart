@@ -1,4 +1,4 @@
-import 'package:kaylaknows_nutrition/screens/search_results.dart';
+import 'package:kk_nutrition/screens/search_results.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/svg.dart';
 import '../constants.dart';

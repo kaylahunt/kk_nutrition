@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:hexcolor/hexcolor.dart';
-// import 'package:kaylaknows_nutrition/screens/sign_in_page.dart';
+// import 'package:kk_nutrition/screens/sign_in_page.dart';
 
 import '../app_theme.dart';
 // Need the auth stuff

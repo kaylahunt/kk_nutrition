@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Kayla Knows Nutrition",
-      initialRoute: '/sign-up',
+      initialRoute: '/demoScore',
       routes: Navigate.routes,
       theme: ThemeData(
         primarySwatch: Colors.blue,

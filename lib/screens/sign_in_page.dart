@@ -1,8 +1,8 @@
 // import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:kaylaknows_nutrition/screens/sign_up_page.dart';
-// import 'package:kaylaknows_nutrition/constants.dart';
-// import 'package:kaylaknows_nutrition/screens/home.dart';
+// import 'package:kk_nutrition/screens/sign_up_page.dart';
+// import 'package:kk_nutrition/constants.dart';
+// import 'package:kk_nutrition/screens/home.dart';
 
 // class SignInPage extends StatefulWidget {
 //   const SignInPage({Key? key}) : super(key: key);

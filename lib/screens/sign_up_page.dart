@@ -2,10 +2,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:kaylaknows_nutrition/screens/home.dart';
-import 'package:kaylaknows_nutrition/screens/sign_in_page.dart';
-import 'package:kaylaknows_nutrition/services/database.dart';
-import 'package:kaylaknows_nutrition/user.dart';
+import 'package:kk_nutrition/screens/home.dart';
+import 'package:kk_nutrition/screens/sign_in_page.dart';
+import 'package:kk_nutrition/services/database.dart';
+import 'package:kk_nutrition/user.dart';
 
 late User user;
 double consumed = 0;

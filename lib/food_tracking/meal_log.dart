@@ -1,7 +1,7 @@
 // import 'package:firebase_database/firebase_database.dart';
 // import 'package:kaylaknows_nutrition/services/database.dart';
 import 'package:flutter/material.dart';
-import 'package:kaylaknows_nutrition/screens/sign_up_page.dart';
+import 'package:kk_nutrition/screens/sign_up_page.dart';
 import 'dart:async';
 
 double tCalorie = 0;

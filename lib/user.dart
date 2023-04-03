@@ -1,6 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:kaylaknows_nutrition/services/database.dart';
+import 'package:kk_nutrition/services/database.dart';
 
 class User {
   String _fullName;
