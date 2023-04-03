@@ -11,7 +11,7 @@ class Constants {
   static const kBorderColor = Color(0xFFEFEFEF);
 //colors
 
-  static const Color primary = Color(0xFF4FC3F7);
+  static const Color primary = Color.fromARGB(255, 63, 230, 79);
   static const Color secondary = Color(0xFFF06292);
   static const Color black = Colors.black;
   static const Color white = Colors.white;
@@ -31,7 +31,6 @@ class Constants {
   static const textSignUp = "Sign Up here";
   static const textHome = "Home";
   static const signUp = "Sign Up ";
-
 
   //navigate
   static const homeNavigate = '/home';
