@@ -64,7 +64,6 @@ class _HomePage extends State<HomePage> {
                 color: Colors.cyan,
                 padding: EdgeInsets.symmetric(
                   horizontal: buttonBound,
-                  vertical: headerBound,
                 ),
                 child: Text(
                   "Add Food",
@@ -94,7 +93,6 @@ class _HomePage extends State<HomePage> {
                 color: Colors.cyan,
                 padding: EdgeInsets.symmetric(
                   horizontal: buttonBound,
-                  vertical: headerBound,
                 ),
                 child: Text(
                   "Add Food",
@@ -124,7 +122,6 @@ class _HomePage extends State<HomePage> {
                 color: Colors.cyan,
                 padding: EdgeInsets.symmetric(
                   horizontal: buttonBound,
-                  vertical: headerBound,
                 ),
                 child: Text(
                   "Add Food",
@@ -154,12 +151,10 @@ class _HomePage extends State<HomePage> {
                 color: Colors.cyan,
                 padding: EdgeInsets.symmetric(
                   horizontal: buttonBound,
-                  vertical: headerBound,
                 ),
                 child: Text(
                   "Add Food",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: headerBound),
+                  style: TextStyle(fontSize: headerBound),
                 ),
               ),
             ),
