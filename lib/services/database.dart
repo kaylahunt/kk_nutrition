@@ -13,11 +13,11 @@ DatabaseReference saveUser(User user) {
   return id;
 }
 
-DatabaseReference saveMeal(Meal meal, User user) {
-  DateTime now = DateTime.now();
-  DateTime date = DateTime(now.year, now.month, now.day);
-  String un = user.username;
-  var id = databaseReference.child(('users/$un/$date/')).push();
-  id.set(meal.mealToJson());
-  return id;
-}
+// DatabaseReference saveMeal(Meal meal, User user) {
+//   DateTime now = DateTime.now();
+//   DateTime date = DateTime(now.year, now.month, now.day);
+//   String un = user.username;
+//   var id = databaseReference.child(('users/$un/$date/')).push();
+//   id.set(meal.mealToJson());
+//   return id;
+// }

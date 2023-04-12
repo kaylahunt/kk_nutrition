@@ -32,7 +32,6 @@ class _SearchResultState extends State<SearchResult> {
   @override
   void initState() {
     super.initState();
-    getsmthg();
   }
 
   Future<void> getsmthg() async {
@@ -40,15 +39,18 @@ class _SearchResultState extends State<SearchResult> {
     meal = widget.meal;
     var response = httprequest(searchText);
     print("Here");
-    // results = response as List;
+    results = await response;
     print("There");
-    // for (var item in results) {
-    //   tiles.add(FoodTile(item, meal));
-    // }
+    for (var item in results) {
+      tiles.add(FoodTile(item, meal));
+      print("There");
+    }
+    print(tiles);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Future<Widget> build(BuildContext context) async {
+    await getsmthg();
     print("H?EEELLLOOO");
     return Scaffold(
         appBar: AppBar(
@@ -157,13 +159,15 @@ class _SearchResultState extends State<SearchResult> {
 //   Map<String, String> headers = {
 //     'x-app-id': "6fdef0e0",
 //     'x-app-key': "e0d0ffe1141be81087401c46402ff78b",
+//     'content': "application/json",
+//     'Content-Type': "application/x-www-form-urlencoded"
 //   };
-//   var url = 'https://trackapi.nutritionix.com/v2/natural/nutrients?query=$name';
+//   var url = 'https://api.nutritionix.com/v1_1/search/$name?results=0:50&fields=item_name,brand_name,nf_calories,nf_sodium,nf_sugars,nf_cholesterol,nf_total_fat,nf_dietary_fiber';
 //   final uri = Uri.parse(url);
 //   List results = [];
 //   try {
-//     final response = await http.post(uri, headers: headers);
-//     print(response);
+//     final response = await http.runWithClient(uri, headers: headers);
+//     print(response.body);
 //     var responseData = json.decode(response.body);
 //     print(responseData);
 //     for (var i in responseData) {
@@ -196,25 +200,27 @@ Future<List> httprequest(String name) async {
   dio.options.headers['Content-Type'] = "application/x-www-form-urlencoded";
   dio.options.headers['x-app-id'] = "6fdef0e0";
   dio.options.headers["x-app-key"] = "e0d0ffe1141be81087401c46402ff78b";
+
   List results = [];
   try {
     response = await dio.post(
-        'https://trackapi.nutritionix.com/v2/natural/nutrients',
-        data: {'query': name});
+      'https://trackapi.nutritionix.com/v2/natural/nutrients',
+      data: {'query': name},
+    );
     print(response);
     if (response.statusCode == 200) {
       print(response.data);
-      // for (var food in response.data['foods']) {
-      //   Food entry = Food(
-      //       name: food['food_name'].toString(),
-      //       brand: food['brand_name'].toString(),
-      //       calories: food['nf_calories'],
-      //       protein: food['nf_protein'],
-      //       carbs: food['nf_carbohydrate'],
-      //       fats: food['nf_total_fat'],
-      //       servings: 1);
-      //   results.add(entry);
-      // }
+      for (var food in response.data['foods']) {
+        Food entry = Food(
+            name: (food['food_name'] ?? name).toString(),
+            brand: (food['brand_name'] ?? "None").toString(),
+            calories: double.parse((food['nf_calories'] ?? '0').toString()),
+            protein: double.parse((food['nf_protein'] ?? '0').toString()),
+            carbs: double.parse((food['nf_carbohydrates'] ?? '0').toString()),
+            fats: double.parse((food['nf_total_fat'] ?? '0').toString()),
+            servings: 1);
+        results.add(entry);
+      }
     }
     return results;
   } catch (e) {

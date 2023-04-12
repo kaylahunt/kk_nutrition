@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 var name = "Chicken";
 var brand = "";
-var calories = 142;
+var calories = 185;
 var protein = 27;
 var carbs = 0;
 var fats = 3;
@@ -23,10 +23,10 @@ class DemoScore extends StatelessWidget {
         protein: protein,
         carbs: carbs,
         fats: fats,
-        servings: servings,
-        satFats: satFats,
-        sodium: sodium,
-        sugar: sugar);
+        servings: servings);
+    // satFats: satFats,
+    // sodium: sodium,
+    // sugar: sugar);
     HealthScore healthScore = HealthScore(food: food);
     return SizedBox(
       height: 50,

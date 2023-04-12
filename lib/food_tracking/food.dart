@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class Food {
   final String _name;
   final String _brand;
-  final int _calories;
-  final int _protein;
-  final int _carbs;
-  final int _fats;
-  final int _satFat;
-  final int _sodium;
-  final int _sugar;
-  final int _servings;
+  final double _calories;
+  final double _protein;
+  final double _carbs;
+  final double _fats;
+  // final int _satFat;
+  // final int _sodium;
+  // final int _sugar;
+  final double _servings;
 
   Food({
     @required name,
@@ -20,41 +20,41 @@ class Food {
     @required carbs,
     @required fats,
     @required servings,
-    @required satFats,
-    @required sodium,
-    @required sugar,
+    // @required satFats,
+    // @required sodium,
+    // @required sugar,
   })  : this._name = name,
         this._brand = brand,
         this._calories = calories,
         this._protein = protein,
         this._carbs = carbs,
         this._fats = fats,
-        this._servings = servings,
-        this._satFat = satFats,
-        this._sodium = sodium,
-        this._sugar = sugar;
+        this._servings = servings;
+  // this._satFat = satFats,
+  // this._sodium = sodium,
+  // this._sugar = sugar;
 
   String get name => _name;
 
   String get brand => _brand;
 
-  int get calories => _calories;
+  double get calories => _calories;
 
-  int get protein => _protein;
+  double get protein => _protein;
 
-  int get carbs => _carbs;
+  double get carbs => _carbs;
 
-  int get fats => _fats;
+  double get fats => _fats;
 
-  int get servings => _servings;
+  double get servings => _servings;
 
-  int get satFats => _satFat;
+  // int get satFats => _satFat;
 
-  int get sodium => _sodium;
+  // int get sodium => _sodium;
 
-  int get sugar => _sugar;
+  // int get sugar => _sugar;
 
-  Map<String, int> foodToJson() {
+  Map<String, double> foodToJson() {
     return {
       'calories': _calories,
       'proteins': _protein,
