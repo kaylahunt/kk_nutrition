@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 class Food {
   final String _name;
   final String _brand;
-  final int _calories;
-  final int _protein;
-  final int _carbs;
-  final int _fats;
-  final int _satFat;
-  final int _sodium;
-  final int _sugar;
-  final int _servings;
+  final double _calories;
+  final double _protein;
+  final double _carbs;
+  final double _fats;
+  //final double _satFat;
+  //final double _sodium;
+  //final double _sugar;
+  final double _servings;
+  final double _healthscore;
 
   Food({
     @required name,
@@ -20,9 +21,10 @@ class Food {
     @required carbs,
     @required fats,
     @required servings,
-    @required satFats,
-    @required sodium,
-    @required sugar,
+    //@required satFats,
+    //@required sodium,
+    //@required sugar,
+    @required healthscore,
   })  : this._name = name,
         this._brand = brand,
         this._calories = calories,
@@ -30,37 +32,40 @@ class Food {
         this._carbs = carbs,
         this._fats = fats,
         this._servings = servings,
-        this._satFat = satFats,
-        this._sodium = sodium,
-        this._sugar = sugar;
+        //this._satFat = satFats,
+        //this._sodium = sodium,
+        //this._sugar = sugar,
+        this._healthscore = healthscore;
 
   String get name => _name;
 
   String get brand => _brand;
 
-  int get calories => _calories;
+  double get calories => _calories;
 
-  int get protein => _protein;
+  double get protein => _protein;
 
-  int get carbs => _carbs;
+  double get carbs => _carbs;
 
-  int get fats => _fats;
+  double get fats => _fats;
 
-  int get servings => _servings;
+  double get servings => _servings;
 
-  int get satFats => _satFat;
+  // double get satFats => _satFat;
 
-  int get sodium => _sodium;
+  // double get sodium => _sodium;
 
-  int get sugar => _sugar;
+  // double get sugar => _sugar;
 
-  Map<String, int> foodToJson() {
+  double get healthscore => _healthscore;
+
+  Map<String, double> foodToJson() {
     return {
       'calories': _calories,
       'proteins': _protein,
       'carbs': _carbs,
       'fats': _fats,
-      'servings': _servings
+      'healthscore': _healthscore,
     };
   }
 }

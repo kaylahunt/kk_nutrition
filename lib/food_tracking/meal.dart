@@ -6,8 +6,8 @@ import 'package:kk_nutrition/services/database.dart';
 class Meal {
   final String _mealTime;
   final List<Food> _foodItems;
-  final Map<String, int> _mealTotals;
-  int _healthScore;
+  final Map<String, double> _mealTotals;
+  double _healthScore;
   late DatabaseReference _id;
 
   Meal({@required mealTime})
@@ -24,8 +24,8 @@ class Meal {
 
   String get meal => _mealTime;
   List<Food> get foodItems => _foodItems;
-  Map<String, int> get mealTotals => _mealTotals;
-  int get mealHealthScore => _healthScore;
+  Map<String, double> get mealTotals => _mealTotals;
+  double get mealHealthScore => _healthScore;
 
   int addFoodFromList(List<Food> foodToAdd) {
     //add food to the _foodItems list, update the meal totals and health scores
@@ -66,7 +66,7 @@ class Meal {
   }
 
   Map<String, dynamic> mealToJson() {
-    //foodItemsJson = {fooditemName: {calories:, protein:, carbs:, fats:, servings:}}
+    //foodItemsJson = {fooditemName: {calories:, protein:, carbs:, fats:, healthscore:,}}
     Map<String, dynamic> foodItemsJson = foodItemToJson();
 
     //want {breakfast: {foodItemsJson}}
