@@ -60,7 +60,9 @@ class HealthScore {
     }
 
     var sodiumScore = _sodium / sodiumLimit;
+    print(sodiumScore);
     var sugarScore = _sugar / sugarLimit;
+    print(sugarScore);
     var satFatsScore = _satFat / satFatsLimit;
     var macroScore = ((proteinScore + carbScore + fatScore) * 33).round();
     print(macroScore);

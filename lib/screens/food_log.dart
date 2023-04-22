@@ -46,14 +46,17 @@ class _FoodLogState extends State<FoodLog> {
   late Food food;
   int servings = 1;
   int healthScore = 0;
+
   double alldatacalories = 0;
   double alldatacarbo = 0;
   double alldataprotein = 0;
   double alldatafat = 0;
+
   int goalProtein = 100;
   int goalFats = 50;
   int goalCarbs = 250;
   int goalCalories = 1850;
+
   double calspercent = 0;
   double carbspercent = 0;
   double proteinpercent = 0;
@@ -70,6 +73,7 @@ class _FoodLogState extends State<FoodLog> {
   }
 
   Future<Food> setup(int servings) async {
+    print("FINGER");
     var response = httprequest(food_name, nxid, servings);
     food = await response;
 
@@ -535,10 +539,13 @@ class _FoodLogState extends State<FoodLog> {
     Food results = Food(
         name: name,
         brand: "brand",
-        calories: servings * 170,
-        protein: servings * 25,
-        carbs: servings * 11,
-        fats: servings * 4,
+        calories: 0,
+        protein: 0,
+        carbs: 0,
+        fats: 0,
+        satFats: 0,
+        sugar: 0,
+        sodium: 0,
         servings: servings);
     try {
       if (nxid == "-1") {
@@ -570,8 +577,10 @@ class _FoodLogState extends State<FoodLog> {
                     .toString()),
             fats: servings *
                 double.parse((foodSec['nf_total_fat'] ?? 0).toString()),
+            satFats: servings *
+                double.parse((foodSec['nf_saturated_fat'] ?? 0).toString()),
             sodium: double.parse((foodSec['nf_sodium'] ?? 0).toString()),
-            sugar: double.parse((foodSec['nf_sugar'] ?? 0).toString()),
+            sugar: double.parse((foodSec['nf_sugars'] ?? 0).toString()),
             servings: servings);
         results = entry;
       }
