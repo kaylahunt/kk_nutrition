@@ -13,9 +13,8 @@ class HealthScore {
   int _sodium;
   int _sugar;
 
-  HealthScore({
-    @required food,
-  })  : this._food = food,
+  HealthScore({@required food})
+      : this._food = food,
         this._calories = food.calories,
         this._protein = food.protein,
         this._carbs = food.carbs,

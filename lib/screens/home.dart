@@ -20,6 +20,35 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var buttonBound = (screenWidth / 3);
+    var screenHeight = MediaQuery.of(context).size.height;
+    var headerBound = (screenHeight / 24);
+
+    Widget _calorieDisplay(int score) {
+      return Container(
+        height: headerBound,
+        width: buttonBound / 4,
+        decoration: const BoxDecoration(
+          color: Color(0xff5FA55A),
+          shape: BoxShape.circle,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(score.toString(),
+                style: TextStyle(
+                  fontSize: headerBound / 2,
+                  color: Colors.white,
+                  fontFamily: 'Open Sans',
+                  fontWeight: FontWeight.w500,
+                )),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Home Screen"),
@@ -27,109 +56,184 @@ class _HomePage extends State<HomePage> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            const SizedBox(
-              height: 50,
-              child: Text("Today's nutrition"),
+            SizedBox(
+              height: headerBound * 1.5,
+              child: Text(
+                "Today's nutrition",
+                style: TextStyle(
+                    fontSize: headerBound * 1.25, fontWeight: FontWeight.bold),
+              ),
             ),
-            //const DayStats(),
+            const DayStats(),
             const SizedBox(
               height: 20,
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Breakfast"),
+            SizedBox(
+              height: headerBound,
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Breakfast",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: headerBound),
+                    ),
+                    _calorieDisplay(76)
+                  ],
+                ),
+              ),
             ),
             MealLog(meal: "Breakfast"),
-            SizedBox(
-              height: 25,
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const SearchBar(meal: "Breakfast")));
-                },
-                color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
-                ),
-                child: const Text(
-                  "Add Food",
+            Padding(
+              padding: EdgeInsets.only(bottom: headerBound / 2),
+              child: SizedBox(
+                height: headerBound * .8,
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true).push(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const SearchBar(meal: "Breakfast")));
+                  },
+                  color: Colors.cyan,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: buttonBound / 2,
+                  ),
+                  child: Text(
+                    "Add Food",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: headerBound * .7),
+                  ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Lunch"),
+            SizedBox(
+              height: headerBound,
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Lunch",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: headerBound),
+                    ),
+                    _calorieDisplay(66)
+                  ],
+                ),
+              ),
             ),
             MealLog(meal: "Lunch"),
-            SizedBox(
-              height: 25,
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const SearchBar(meal: "Lunch")));
-                },
-                color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
-                ),
-                child: const Text(
-                  "Add Food",
+            Padding(
+              padding: EdgeInsets.only(bottom: headerBound / 2),
+              child: SizedBox(
+                height: headerBound * .8,
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true).push(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const SearchBar(meal: "Lunch")));
+                  },
+                  color: Colors.cyan,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: buttonBound / 2,
+                  ),
+                  child: Text(
+                    "Add Food",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: headerBound * .7),
+                  ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Dinner"),
+            SizedBox(
+              height: headerBound,
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Dinner",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: headerBound),
+                    ),
+                    _calorieDisplay(56)
+                  ],
+                ),
+              ),
             ),
             MealLog(meal: "Dinner"),
-            SizedBox(
-              height: 25,
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const SearchBar(meal: "Dinner")));
-                },
-                color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
-                ),
-                child: const Text(
-                  "Add Food",
+            Padding(
+              padding: EdgeInsets.only(bottom: headerBound / 2),
+              child: SizedBox(
+                height: headerBound * .8,
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true).push(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const SearchBar(meal: "Dinner")));
+                  },
+                  color: Colors.cyan,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: buttonBound / 2,
+                  ),
+                  child: Text(
+                    "Add Food",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: headerBound * .7),
+                  ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 25,
-              child: Text("Snack"),
+            SizedBox(
+              height: headerBound,
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Snack",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: headerBound),
+                    ),
+                    _calorieDisplay(76)
+                  ],
+                ),
+              ),
             ),
             MealLog(meal: "Snack"),
-            SizedBox(
-              height: 25,
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const SearchBar(meal: "Snack")));
-                },
-                color: Colors.cyan,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
-                ),
-                child: const Text(
-                  "Add Food",
+            Padding(
+              padding: EdgeInsets.only(bottom: headerBound / 2),
+              child: SizedBox(
+                height: headerBound * .8,
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true).push(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const SearchBar(meal: "Snack")));
+                  },
+                  color: Colors.cyan,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: buttonBound / 2,
+                  ),
+                  child: Text(
+                    "Add Food",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: headerBound * .7),
+                  ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: headerBound,
             ),
           ]),
         ));

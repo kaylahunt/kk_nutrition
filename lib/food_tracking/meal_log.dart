@@ -21,6 +21,11 @@ class MealLog extends StatefulWidget {
 class _MealLogState extends State<MealLog> {
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var buttonBound = (screenWidth / 20);
+    var screenHeight = MediaQuery.of(context).size.height;
+    var headerBound = (screenHeight / 24);
+
     return Column(
       children: <Widget>[
         // StreamBuilder(
@@ -33,50 +38,56 @@ class _MealLogState extends State<MealLog> {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.only(
+                  bottom: headerBound / 2,
+                  left: buttonBound,
+                  right: buttonBound,
+                  top: headerBound / 5),
               child: Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(horizontal: buttonBound / 2),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.symmetric(
+                              vertical: headerBound / 2,
+                              horizontal: buttonBound / 2),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "Food",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: headerBound / 2,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(width: 65),
+                                SizedBox(width: buttonBound * 1.5),
                                 Text(
-                                  "Total Cal",
+                                  "Calories",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: headerBound / 2,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(width: 65),
+                                SizedBox(width: buttonBound * 2),
                                 Text(
                                   "Carbs",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: headerBound / 2,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(width: 65),
+                                SizedBox(width: buttonBound * 2),
                                 Text(
                                   "Protein",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: headerBound / 2,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(width: 65),
+                                SizedBox(width: buttonBound * 2),
                                 Text(
                                   "Fat",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: headerBound / 2,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ]),

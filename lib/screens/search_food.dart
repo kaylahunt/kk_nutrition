@@ -23,6 +23,8 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    var screenBound = MediaQuery.of(context).size.width * 0.7;
+    var heightBound = MediaQuery.of(context).size.height * 0.5;
     return Scaffold(
         appBar: AppBar(
           title: Text("Add food for $meal"),
@@ -39,26 +41,40 @@ class _SearchBarState extends State<SearchBar> {
         ),
         body: Stack(
           children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              height: 52,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Constants.primary,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: TextField(
-                decoration: const InputDecoration.collapsed(
-                  hintText: 'Search for food',
-                ),
-                onChanged: (value) {
-                  searchText = value;
-                },
+            Align(
+              alignment: Alignment.topCenter,
+              heightFactor: heightBound * .5,
+              child: Text(
+                "$meal",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: heightBound / 4),
               ),
             ),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.center,
+              heightFactor: 25,
+              child: Container(
+                width: screenBound,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: Constants.primary,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: const EdgeInsets.all(16),
+                child: TextField(
+                  decoration: const InputDecoration.collapsed(
+                    hintText: 'Search for food',
+                  ),
+                  onChanged: (value) {
+                    searchText = value;
+                  },
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
               child: MaterialButton(
+                child: const Text("Enter"),
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).push(
                       MaterialPageRoute(
