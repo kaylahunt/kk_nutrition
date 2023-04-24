@@ -1,8 +1,12 @@
 // import 'package:firebase_database/firebase_database.dart';
 // import 'package:kaylaknows_nutrition/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:kk_nutrition/food_tracking/meal.dart';
 import 'package:kk_nutrition/screens/sign_up_page.dart';
+import 'package:kk_nutrition/screens/home.dart';
 import 'dart:async';
+
+import '../screens/customize_diet.dart';
 
 double tCalorie = 0;
 double tCarbs = 0;
@@ -21,10 +25,24 @@ class MealLog extends StatefulWidget {
 class _MealLogState extends State<MealLog> {
   @override
   Widget build(BuildContext context) {
+    Meal meal = Meal(mealTime: "NULL");
     var screenWidth = MediaQuery.of(context).size.width;
     var buttonBound = (screenWidth / 20);
     var screenHeight = MediaQuery.of(context).size.height;
     var headerBound = (screenHeight / 24);
+
+    if (widget.meal == "Dinner") {
+      meal = dinnerMeal;
+    }
+    if (widget.meal == "Lunch") {
+      meal = lunchMeal;
+    }
+    if (widget.meal == "Snack") {
+      meal = snackMeal;
+    }
+    if (widget.meal == "Breakfast") {
+      meal = breakfastMeal;
+    }
 
     return Column(
       children: <Widget>[
@@ -47,7 +65,7 @@ class _MealLogState extends State<MealLog> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: buttonBound / 2),
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -92,67 +110,66 @@ class _MealLogState extends State<MealLog> {
                                 ),
                               ]),
                         ),
-                        // Column(
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: [
-                        //     Container(
-                        //         height: 1,
-                        //         width: 750,
-                        //         decoration: const BoxDecoration(
-                        //             color: Colors.black)),
-                        //     for (var i = 0;
-                        //         i < snapshot.data!.docs.length;
-                        //         i++)
-                        //       Padding(
-                        //         padding: const EdgeInsets.all(8.0),
-                        //         child: Row(
-                        //           crossAxisAlignment:
-                        //               CrossAxisAlignment.start,
-                        //           children: <Widget>[
-                        //             SizedBox(
-                        //               width: 60,
-                        //               child: Text(
-                        //                 snapshot.data!.docs[i].id,
-                        //                 overflow: TextOverflow.ellipsis,
-                        //               ),
-                        //             ),
-                        //             const SizedBox(width: 50),
-                        //             SizedBox(
-                        //               width: 60,
-                        //               child: Text(
-                        //                 "${snapshot.data!.docs[i][snapshot.data!.docs[i].id]["Total Calories"]}",
-                        //                 overflow: TextOverflow.ellipsis,
-                        //               ),
-                        //             ),
-                        //             const SizedBox(width: 50),
-                        //             SizedBox(
-                        //               width: 60,
-                        //               child: Text(
-                        //                 "${snapshot.data!.docs[i][snapshot.data!.docs[i].id]["Carbohydrate"]}",
-                        //                 overflow: TextOverflow.ellipsis,
-                        //               ),
-                        //             ),
-                        //             const SizedBox(width: 50),
-                        //             SizedBox(
-                        //               width: 60,
-                        //               child: Text(
-                        //                 "${snapshot.data!.docs[i][snapshot.data!.docs[i].id]["Protein"]}",
-                        //                 overflow: TextOverflow.ellipsis,
-                        //               ),
-                        //             ),
-                        //             const SizedBox(width: 50),
-                        //             SizedBox(
-                        //               width: 60,
-                        //               child: Text(
-                        //                 "${snapshot.data!.docs[i][snapshot.data!.docs[i].id]["Fat"]}",
-                        //                 overflow: TextOverflow.ellipsis,
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //   ],
-                        // ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                height: 1,
+                                width: screenWidth - 7 * buttonBound,
+                                decoration:
+                                    const BoxDecoration(color: Colors.black)),
+                            for (var food in meal.foodItems)
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: headerBound / 2,
+                                    horizontal: buttonBound / 2),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    SizedBox(
+                                      width: buttonBound * 2.5,
+                                      child: Text(
+                                        food.name,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    SizedBox(width: buttonBound * 1),
+                                    SizedBox(
+                                      width: buttonBound * 2,
+                                      child: Text(
+                                        food.calories.toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    SizedBox(width: buttonBound * 2),
+                                    SizedBox(
+                                      width: buttonBound * 2,
+                                      child: Text(
+                                        food.carbs.toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    SizedBox(width: buttonBound * 2),
+                                    SizedBox(
+                                      width: buttonBound * 2,
+                                      child: Text(
+                                        food.protein.toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    SizedBox(width: buttonBound * 2),
+                                    SizedBox(
+                                      width: buttonBound * 2,
+                                      child: Text(
+                                        food.fats.toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                          ],
+                        ),
                       ]),
                 ),
               ),

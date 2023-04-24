@@ -5,10 +5,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:kk_nutrition/constants.dart';
+import 'package:kk_nutrition/food_tracking/meal.dart';
 import 'package:kk_nutrition/screens/day_stats.dart';
 import 'package:kk_nutrition/screens/search_food.dart';
 
 import '../food_tracking/meal_log.dart';
+import 'customize_diet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -79,7 +81,7 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: headerBound),
                     ),
-                    _calorieDisplay(76)
+                    _calorieDisplay(breakfastMeal.mealHealthScore)
                   ],
                 ),
               ),
@@ -120,7 +122,7 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: headerBound),
                     ),
-                    _calorieDisplay(66)
+                    _calorieDisplay(lunchMeal.mealHealthScore)
                   ],
                 ),
               ),
@@ -161,7 +163,7 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: headerBound),
                     ),
-                    _calorieDisplay(56)
+                    _calorieDisplay(dinnerMeal.mealHealthScore)
                   ],
                 ),
               ),
@@ -202,7 +204,7 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: headerBound),
                     ),
-                    _calorieDisplay(76)
+                    _calorieDisplay(snackMeal.mealHealthScore)
                   ],
                 ),
               ),

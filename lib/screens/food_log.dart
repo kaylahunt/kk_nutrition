@@ -17,6 +17,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:kk_nutrition/constants.dart';
 
 import '../app_theme.dart';
+import 'customize_diet.dart';
 
 late Response response;
 var dio = Dio();
@@ -26,7 +27,7 @@ class FoodLog extends StatefulWidget {
   final String food_name;
   final String nxid;
   final String meal;
-  late int servings;
+  late double servings;
   FoodLog(
       {Key? key,
       required this.food_name,
@@ -44,8 +45,9 @@ class _FoodLogState extends State<FoodLog> {
   String meal = "";
   String nxid = "";
   late Food food;
-  int servings = 1;
+  double servings = 1.0;
   int healthScore = 0;
+  late HealthScore health;
 
   double alldatacalories = 0;
   double alldatacarbo = 0;
@@ -72,13 +74,13 @@ class _FoodLogState extends State<FoodLog> {
     servings = widget.servings;
   }
 
-  Future<Food> setup(int servings) async {
+  Future<Food> setup(double servings) async {
     print("FINGER");
     var response = httprequest(food_name, nxid, servings);
     food = await response;
     print("THUMB");
 
-    HealthScore health = HealthScore(food: food);
+    health = HealthScore(food: food);
     healthScore = health.healthScore;
 
     alldatacalories = food.calories;
@@ -443,11 +445,11 @@ class _FoodLogState extends State<FoodLog> {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: bound2 * 1.5,
+                    height: bound2 * 75,
                     child: Text(
                       food_name,
                       style: TextStyle(
-                          fontSize: bound2 * 1.25, fontWeight: FontWeight.bold),
+                          fontSize: bound2 * .75, fontWeight: FontWeight.bold),
                     ),
                   ),
                   _food_stats(),
@@ -471,7 +473,7 @@ class _FoodLogState extends State<FoodLog> {
                           ),
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
-                            servings = int.parse(value);
+                            servings = double.parse(value);
                           },
                         ),
                       ),
@@ -493,13 +495,86 @@ class _FoodLogState extends State<FoodLog> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        height: bound2 * .5,
+                        child: Text(
+                          "Pros:",
+                          style: TextStyle(
+                              fontSize: bound2 * .5,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  for (String pros in health.pro)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: bound2 * .33,
+                          child: Text(
+                            pros,
+                            style: TextStyle(
+                                fontSize: bound2 * .33,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        height: bound2 * .5,
+                        child: Text(
+                          "Cons:",
+                          style: TextStyle(
+                              fontSize: bound2 * .5,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  for (String con in health.cons)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: bound2 * .33,
+                          child: Text(
+                            con,
+                            style: TextStyle(
+                                fontSize: bound2 * .33,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       MaterialButton(
                         onPressed: () {
-                          //logFood();
+                          logFood();
                           Navigator.of(context, rootNavigator: true).push(
                               MaterialPageRoute(
                                   builder: (context) => const HomePage()));
@@ -529,15 +604,15 @@ class _FoodLogState extends State<FoodLog> {
     );
   }
 
-  void changeServings(int servings) {
+  void changeServings(double servings) {
     setState(() {
       widget.servings = servings;
     });
   }
 
-  Future<Food> httprequest(String name, String nxid, int servings) async {
-    dio.options.headers['x-app-id'] = "6fdef0e0";
-    dio.options.headers["x-app-key"] = "e0d0ffe1141be81087401c46402ff78b";
+  Future<Food> httprequest(String name, String nxid, double servings) async {
+    dio.options.headers['x-app-id'] = "eed8f827";
+    dio.options.headers["x-app-key"] = "f56f51aaf1455cd4c832bb9461bb26a5";
     print("Before food");
     Food results = Food(
         name: name,
@@ -551,7 +626,7 @@ class _FoodLogState extends State<FoodLog> {
         sodium: 0.0,
         potassium: 0.0,
         fiber: 0.0,
-        servings: servings.toDouble());
+        servings: servings);
     print("Past food");
 
     try {
@@ -595,7 +670,7 @@ class _FoodLogState extends State<FoodLog> {
             fiber: servings *
                 double.parse((foodSec['nf_dietary_fiber'] ?? 0).toString()),
             potassium: double.parse((foodSec['nf_potassium'] ?? 0).toString()),
-            servings: servings.toDouble());
+            servings: servings);
         results = entry;
       }
       return results;
@@ -607,8 +682,25 @@ class _FoodLogState extends State<FoodLog> {
     }
   }
 
+  void logFood() {
+    // var user = auth.currentUser!;
+    if (widget.meal == "Dinner") {
+      dinnerMeal.addFoodItem(food);
+    }
+    if (widget.meal == "Lunch") {
+      lunchMeal.addFoodItem(food);
+    }
+    if (widget.meal == "Snack") {
+      snackMeal.addFoodItem(food);
+    }
+    if (widget.meal == "Breakfast") {
+      breakfastMeal.addFoodItem(food);
+    }
+    dayTotal.addFoodItem(food);
+  }
+
   // void logFood() async {
-  //   // var user = auth.currentUser!;
+  // var user = auth.currentUser!;
   //   Food input = widget.food;
   //   if (widget.meal == "Dinner") {
   //     DatabaseService().addFoodDataDinner(

@@ -2,19 +2,13 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:hexcolor/hexcolor.dart';
+import 'package:kk_nutrition/screens/home.dart';
 // import 'package:kaylaknows_nutrition/screens/sign_in_page.dart';
 
 import '../app_theme.dart';
+import 'customize_diet.dart';
 // Need the auth stuff
 
-double alldatacalories = 0;
-double alldatacarbo = 0;
-double alldataprotein = 0;
-double alldatafat = 0;
-double calspercent = .16;
-double carbspercent = .50;
-double proteinpercent = .25;
-double fatpercent = .77;
 //late User user1;
 //late String eatenCalorie;
 
@@ -32,6 +26,14 @@ class DayStats extends StatefulWidget {
 class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    double alldatacalories = dayTotal.mealTotals["calories"] ?? 0.0;
+    double alldatacarbo = dayTotal.mealTotals["carbs"] ?? 0.0;
+    double alldataprotein = dayTotal.mealTotals["protein"] ?? 0.0;
+    double alldatafat = dayTotal.mealTotals["fats"] ?? 0.0;
+    double calspercent = alldatacalories / goalCalories;
+    double carbspercent = alldatacarbo / goalCarbs;
+    double proteinpercent = alldataprotein / goalProtein;
+    double fatpercent = alldatafat / goalFats;
     //user1 = auth.currentUser!;
 
     var screenWidth = MediaQuery.of(context).size.width;
@@ -144,7 +146,7 @@ class _DayStatsState extends State<DayStats> with TickerProviderStateMixin {
               ),
             ),
             Expanded(
-              child: _calorieDisplay(85),
+              child: _calorieDisplay(dayTotal.mealHealthScore),
             )
           ]),
         ),

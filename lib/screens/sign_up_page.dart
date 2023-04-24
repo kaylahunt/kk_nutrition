@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:kk_nutrition/screens/customize_diet.dart';
 import 'package:kk_nutrition/screens/home.dart';
 import 'package:kk_nutrition/screens/sign_in_page.dart';
 import 'package:kk_nutrition/services/database.dart';
@@ -324,7 +325,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomePage()),
+                                  builder: (context) => const CustomizeDiet()),
                             );
                           },
                           child: Container(

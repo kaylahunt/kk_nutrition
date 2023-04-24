@@ -70,7 +70,11 @@ class Food {
       'proteins': _protein,
       'carbs': _carbs,
       'fats': _fats,
-      'servings': _servings
+      'servings': _servings,
+      'satFats': _satFat,
+      'sugars': _sugar,
+      'fiber': _fiber,
+      'potassium': _potassium
     };
   }
 }
