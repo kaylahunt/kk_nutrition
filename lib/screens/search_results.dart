@@ -40,11 +40,11 @@ class _SearchResultState extends State<SearchResult> {
     meal = widget.meal;
     var response = httprequest(searchText);
     print("Here");
-    // results = response as List;
+    results = response as List;
     print("There");
-    // for (var item in results) {
-    //   tiles.add(FoodTile(item, meal));
-    // }
+    for (var item in results) {
+      tiles.add(FoodTile(item, meal));
+    }
   }
 
   @override
@@ -99,7 +99,7 @@ class _SearchResultState extends State<SearchResult> {
                       child: TextField(
                         controller: searchController..text = searchText,
                         decoration: const InputDecoration.collapsed(
-                          hintText: 'Search for food',
+                          hintText: 'Search',
                         ),
                         onChanged: (value) {
                           searchText = value;
@@ -201,20 +201,21 @@ Future<List> httprequest(String name) async {
     response = await dio.post(
         'https://trackapi.nutritionix.com/v2/natural/nutrients',
         data: {'query': name});
-    print(response);
+    //print(response);
     if (response.statusCode == 200) {
       print(response.data);
-      // for (var food in response.data['foods']) {
-      //   Food entry = Food(
-      //       name: food['food_name'].toString(),
-      //       brand: food['brand_name'].toString(),
-      //       calories: food['nf_calories'],
-      //       protein: food['nf_protein'],
-      //       carbs: food['nf_carbohydrate'],
-      //       fats: food['nf_total_fat'],
-      //       servings: 1);
-      //   results.add(entry);
-      // }
+      for (var food in response.data['foods']) {
+        Food entry = Food(
+            name: food['food_name'] ?? food['food_name'].toString(),
+            brand: food['brand_name'].toString(),
+            calories: food['nf_calories'],
+            protein: food['nf_protein'],
+            carbs: food['nf_carbohydrate'],
+            fats: food['nf_total_fat'],
+            servings: 1,
+            healthscore: 96);
+        results.add(entry);
+      }
     }
     return results;
   } catch (e) {
