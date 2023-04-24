@@ -445,7 +445,7 @@ class _FoodLogState extends State<FoodLog> {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: bound2 * 75,
+                    height: bound2 * .75,
                     child: Text(
                       food_name,
                       style: TextStyle(
