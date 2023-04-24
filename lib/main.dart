@@ -4,8 +4,8 @@ import 'navigation/navigate.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
   runApp(const MyApp());
 }
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Kayla Knows Nutrition",
-      initialRoute: '/home',
+      initialRoute: '/search',
       routes: Navigate.routes,
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -538,22 +538,25 @@ class _FoodLogState extends State<FoodLog> {
   Future<Food> httprequest(String name, String nxid, int servings) async {
     dio.options.headers['x-app-id'] = "6fdef0e0";
     dio.options.headers["x-app-key"] = "e0d0ffe1141be81087401c46402ff78b";
-
+    print("Before food");
     Food results = Food(
         name: name,
         brand: "brand",
-        calories: 0,
-        protein: 0,
-        carbs: 0,
-        fats: 0,
-        satFats: 0,
-        sugar: 0,
-        sodium: 0,
-        potassium: 0,
-        fiber: 0,
-        servings: servings);
+        calories: 0.0,
+        protein: 0.0,
+        carbs: 0.0,
+        fats: 0.0,
+        satFats: 0.0,
+        sugar: 0.0,
+        sodium: 0.0,
+        potassium: 0.0,
+        fiber: 0.0,
+        servings: servings.toDouble());
+    print("Past food");
+
     try {
       if (nxid == "-1") {
+        print("Trying food 1");
         dio.options.headers['content'] = "application/json";
         dio.options.headers['Content-Type'] =
             "application/x-www-form-urlencoded";
@@ -561,6 +564,7 @@ class _FoodLogState extends State<FoodLog> {
             'https://trackapi.nutritionix.com/v2/natural/nutrients',
             data: {'query': name});
       } else {
+        print("Trying food 2");
         response = await dio.get(
           "https://trackapi.nutritionix.com/v2/search/item?nix_item_id=$nxid",
         );
@@ -591,7 +595,7 @@ class _FoodLogState extends State<FoodLog> {
             fiber: servings *
                 double.parse((foodSec['nf_dietary_fiber'] ?? 0).toString()),
             potassium: double.parse((foodSec['nf_potassium'] ?? 0).toString()),
-            servings: servings);
+            servings: servings.toDouble());
         results = entry;
       }
       return results;

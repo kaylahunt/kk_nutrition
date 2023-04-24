@@ -39,6 +39,7 @@ class HealthScore {
     var foodGoalProtein = goalProtein * percentCalories;
     var foodGoalCarbs = goalCarbs * percentCalories;
     var foodGoalFats = goalFats * percentCalories;
+    var ogfoodGoalFats = goalFats * percentCalories;
     var sodiumLimit = (goalCalories / 2000) * percentCalories * 2300;
     var sugarLimit = ((goalCalories * .05) * percentCalories) / 4 + _fiber * 5;
     var goalFiber = (goalCalories / 2000) * percentCalories * 28;
@@ -128,7 +129,7 @@ class HealthScore {
 
     var macroScore = ((proteinScore + carbScore + fatScore) * 33).round();
     if (oil) {
-      macroScore -= 10;
+      macroScore -= (2.5 * (_fats - ogfoodGoalFats)).round();
     }
     print(macroScore);
     var badMicroScore = max(
