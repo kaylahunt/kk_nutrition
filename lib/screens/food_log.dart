@@ -76,8 +76,11 @@ class _FoodLogState extends State<FoodLog> {
     print("FINGER");
     var response = httprequest(food_name, nxid, servings);
     food = await response;
+    print("THUMB");
 
-    healthScore = HealthScore(food: food).healthScore;
+    HealthScore health = HealthScore(food: food);
+    healthScore = health.healthScore;
+
     alldatacalories = food.calories;
     alldatacarbo = food.carbs;
     alldataprotein = food.protein;
@@ -546,6 +549,8 @@ class _FoodLogState extends State<FoodLog> {
         satFats: 0,
         sugar: 0,
         sodium: 0,
+        potassium: 0,
+        fiber: 0,
         servings: servings);
     try {
       if (nxid == "-1") {
@@ -579,8 +584,13 @@ class _FoodLogState extends State<FoodLog> {
                 double.parse((foodSec['nf_total_fat'] ?? 0).toString()),
             satFats: servings *
                 double.parse((foodSec['nf_saturated_fat'] ?? 0).toString()),
-            sodium: double.parse((foodSec['nf_sodium'] ?? 0).toString()),
-            sugar: double.parse((foodSec['nf_sugars'] ?? 0).toString()),
+            sodium:
+                servings * double.parse((foodSec['nf_sodium'] ?? 0).toString()),
+            sugar:
+                servings * double.parse((foodSec['nf_sugars'] ?? 0).toString()),
+            fiber: servings *
+                double.parse((foodSec['nf_dietary_fiber'] ?? 0).toString()),
+            potassium: double.parse((foodSec['nf_potassium'] ?? 0).toString()),
             servings: servings);
         results = entry;
       }

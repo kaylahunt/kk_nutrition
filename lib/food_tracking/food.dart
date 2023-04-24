@@ -11,6 +11,8 @@ class Food {
   final double _sodium;
   final double _sugar;
   final double _servings;
+  final double _fiber;
+  final double _potassium;
 
   Food({
     @required name,
@@ -23,6 +25,8 @@ class Food {
     @required satFats,
     @required sodium,
     @required sugar,
+    @required fiber,
+    @required potassium,
   })  : this._name = name,
         this._brand = brand,
         this._calories = calories,
@@ -32,7 +36,9 @@ class Food {
         this._servings = servings,
         this._satFat = satFats,
         this._sodium = sodium,
-        this._sugar = sugar;
+        this._sugar = sugar,
+        this._fiber = fiber,
+        this._potassium = potassium;
 
   String get name => _name;
 
@@ -53,6 +59,10 @@ class Food {
   double get sodium => _sodium;
 
   double get sugar => _sugar;
+
+  double get fiber => _fiber;
+
+  double get potassium => _potassium;
 
   Map<String, double> foodToJson() {
     return {
